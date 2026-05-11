@@ -278,6 +278,41 @@ The project reports metrics such as:
 
 These metrics help compare compliance and aggressiveness across controllers.
 
+# 5-DOF MuJoCo Manipulator: RRT* Pick-and-Place with IK and PD Control
+
+This project implements a simulated 5-DOF robotic manipulator in MuJoCo for a pick-and-place task with obstacle avoidance. The pipeline combines task-space RRT* motion planning, damped least-squares inverse kinematics, cubic joint trajectory generation, and PD control with MuJoCo bias compensation.
+
+## Demo
+
+![Demo](assets/demo_gif.gif)
+
+## Project Overview
+
+The goal is to plan and execute a collision-avoiding transfer motion for a 5-DOF manipulator moving a block from an initial position to a target position.
+
+The main pipeline is:
+
+1. Build a 5-DOF serial manipulator in MuJoCo
+2. Define pick, lift, transfer, place, and retreat waypoints
+3. Use task-space RRT* to plan the transfer path around an obstacle
+4. Convert Cartesian waypoints to joint configurations using damped least-squares IK
+5. Generate smooth cubic joint-space trajectories
+6. Track the trajectory using PD control with gravity/Coriolis bias compensation
+7. Evaluate tracking error, torque commands, end-effector path, and final block placement error
+
+## Methods
+
+### RRT* Motion Planning
+
+The transfer motion is planned in 3D task space using RRT*. The planner includes:
+
+- Goal-biased random sampling
+- Nearest-neighbor expansion
+- Collision checking against inflated axis-aligned bounding boxes
+- Parent selection based on path cost
+- Rewiring for cost improvement
+- Path simplification using shortcutting
+- Cartesian path densification before IK
 
 
 
