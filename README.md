@@ -282,9 +282,6 @@ These metrics help compare compliance and aggressiveness across controllers.
 
 This project implements a simulated 5-DOF robotic manipulator in MuJoCo for a pick-and-place task with obstacle avoidance. The pipeline combines task-space RRT* motion planning, damped least-squares inverse kinematics, cubic joint trajectory generation, and PD control with MuJoCo bias compensation.
 
-## Demo
-
-![Demo](assets/demo_gif.gif)
 
 ## Project Overview
 
